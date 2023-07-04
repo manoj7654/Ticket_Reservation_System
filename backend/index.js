@@ -8,6 +8,8 @@ const cors=require("cors")
 const { theaterRouter } = require("./routes/theaterRoutes")
 const { movieRouter } = require("./routes/movieRoutes")
 const { tickeRouter } = require("./routes/ticketRoutes")
+const { cartRouter } = require("./routes/cartRoutes")
+const { authenticate } = require("./middleware/authentication")
 app.use(express.json())
 app.use(cors())
 
@@ -17,8 +19,9 @@ app.get("/",(req,res)=>{
 
 app.use("/user",userRouter)
 app.use("/theaters",theaterRouter)
-app.use("/movie",movieRouter)
-app.use("/bookings",tickeRouter)
+app.use("/movie",authenticate,movieRouter)
+app.use("/bookings",authenticate,tickeRouter)
+app.use("/cart",authenticate,cartRouter)
 app.listen(process.env.port,async()=>{
     try {
         await connection;

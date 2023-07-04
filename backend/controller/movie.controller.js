@@ -54,6 +54,14 @@ const getOneMovie=async(req,res)=>{
     }
 }
 
+// const searchMovie=async(req,res)=>{
+//   try {
+//     const 
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
 module.exports = {
   addMovie,
   getMovie,

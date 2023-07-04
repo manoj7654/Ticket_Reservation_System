@@ -1,20 +1,28 @@
+
+
+const { CartModel } = require("../models/cartModel");
 const { MovieModel } = require("../models/movieModel");
 const { TheaterModel } = require("../models/theaterModel");
-const { TicketModel } = require("../models/ticketModel");
 
-const book = async (req, res) => {
+
+const addCart = async (req, res) => {
   const { userId,seatId, theaterId,  seat } = req.body;
   const movieId = req.params.movieId;
   try {
     const theater = await TheaterModel.findOne({ _id: theaterId });
     const movie = await MovieModel.findOne({ _id: movieId });
+    // console.log(movie)
     let data = {
       MovieName: movie.movieName,
       Price: movie.price,
       location: theater.location,
+      // "showTime":movie.showTime,
+      
+
       seat:[]
 
     };
+
     const availableSeat=movie.availableSeat.find((ele)=>ele._id==seatId);
     // console.log(availableSeat)
     data.showTime=availableSeat.showTime
@@ -24,45 +32,49 @@ const book = async (req, res) => {
                 return true
             }
         })
-        data.seat[i].isBooked=true
+        // data.seat[i].isBooked=true
     }
-    const userData=await TicketModel.exists({userId})
     console.log(data)
+    const userData=await CartModel.exists({userId})
+    console.log(userData)
     if(!userData){
-        const bookTicket = await new TicketModel({userId,bookingDetails:data});
+        const bookTicket = await new CartModel({userId,cartDetails:data});
         await bookTicket.save()
     }else{
-        await TicketModel.findOneAndUpdate({userId},{$push:{"bookingDetails":data}})
+        await CartModel.findOneAndUpdate({userId},{$push:{"cartDetails":data}})
     }
-
    
     // availableSeat.seat.
-    await movie.save()
-    res.send(await TicketModel.find({userId}))
+    // await movie.save()
+    res.send(await CartModel.find({userId}))
   } catch (error) {
     console.log(error);
   }
 };
 
-
-const searchTicket=async(req,res)=>{
-let query={}
-const {q,name,price,location}=req.body
-if(q){
-  q.$or=[]
-  q.$or.push({movieName:{$regex:`*/${q}*/`,$options:"i"}})
-  q.$or.push({price:{$regex:`*/${q}*/`,$options:"i"}})
-  q.$or.push({location:{$regex:`*/${q}*/`,$options:"i"}})
+const getCart=async(req,res)=>{
+  const {userId}=req.body
+    try {
+        const find=await CartModel.find({userId});
+        res.send(find)
+    } catch (error) {
+        console.log(error)
+    }
 }
+
+const deleteItem=async(req,res)=>{
+  const Id=req.params._id
   try {
-    const ticket=await TicketModel.find(query);
-    res.send(ticket)
+    await CartModel.findByIdAndDelete({_id:Id})
+    res.send({"msg":"Item has been deleted"})
   } catch (error) {
     console.log(error)
   }
 }
 
+
 module.exports = {
-  book,
-  searchTicket
+  addCart,
+  getCart,
+  deleteItem
 };

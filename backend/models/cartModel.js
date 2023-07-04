@@ -1,12 +1,29 @@
 const mongoose=require("mongoose")
 
-const cartSchema=mongoose.Schema({
+const cartSchema=mongoose.Schema(
+    {
+        userId: { type: "ObjectId", ref: "users" },
+        cartDetails: [
+          {
+            MovieName: { type: String, required: true },
+            Price: { type: Number, required: true },
+            location: { type: String },
+            showTime: { type: String, required: true },
+            seat: [
+              {
+                seatNo: { type: Number, required: true },
+                isBooked: { type: Boolean, default: false },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        versionKey: false,
+      }
+)
 
-},{
-    versionKey:false
-})
-
-const CartModel=mongoose.model("movies",cartSchema)
+const CartModel=mongoose.model("cart",cartSchema)
 
 
 module.exports={

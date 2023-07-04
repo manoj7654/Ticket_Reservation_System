@@ -36,10 +36,24 @@ const getOneTheater=async(req,res)=>{
     }
 }
 
+const seachTheater=async(req,res)=>{
+    const {query}=req.query
+    try {
+        const search=await TheaterModel.find({theaterName:{$regex:query,$options:"i"}}).populate("movie").exec();
+        res.send(search)
+    } catch (error) {
+        console.log(error)
+        
+    }
+
+}
+
+
 module.exports={
     addTheater,
     getTheater,
-    getOneTheater
+    getOneTheater,
+    seachTheater
 }
 
 // 64a3f4215d400598d000f80c
