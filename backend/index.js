@@ -5,14 +5,20 @@ const {connection}=require("./config/db")
 
 const {userRouter}=require("./routes/userRoutes")
 const cors=require("cors")
+const { theaterRouter } = require("./routes/theaterRoutes")
+const { movieRouter } = require("./routes/movieRoutes")
+const { tickeRouter } = require("./routes/ticketRoutes")
 app.use(express.json())
 app.use(cors())
 
 app.get("/",(req,res)=>{
-    res.send("Welcome to the Ticket Reservation System")
+    res.send("WELCOME TO THE TICKET RESERVATION SYSTEM")
 })
 
 app.use("/user",userRouter)
+app.use("/theaters",theaterRouter)
+app.use("/movie",movieRouter)
+app.use("/bookings",tickeRouter)
 app.listen(process.env.port,async()=>{
     try {
         await connection;
