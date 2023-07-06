@@ -1,13 +1,22 @@
 import { NavLink} from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContextProvider";
 const links = [
-  { path: "/", title: "HOME" },
-  { path: "/register", title: "REGISTER" },
-  { path: "/login", title: "LOGIN" }
+  { path: "/", title: "HOME" }
+ 
+  
 
 ];
 
+
 const Navbar = () => {
+  const {isAuth,logout}=useContext(AuthContext);
+
+const handleClick=()=>{
+  logout()
+}
+
   return (
     <div
       style={{
@@ -24,7 +33,9 @@ const Navbar = () => {
         color: "white",
       }}
     >
+
       {links.map((ele) => {
+        
         return (
           <NavLink
             to={ele.path}
@@ -38,7 +49,36 @@ const Navbar = () => {
         );
       })}
    
-      {/* <NavLink to="/">TodoItem</NavLink> */}
+  {isAuth&& <NavLink
+            to="/cart"
+       
+            className={({ isActive }) => {
+              return isActive ? styles.active : styles.default;
+            }}
+          >
+           CART
+          </NavLink>}
+          {!isAuth&& <NavLink
+            to="/login"
+       
+            className={({ isActive }) => {
+              return isActive ? styles.active : styles.default;
+            }}
+          >
+           LOGIN
+          </NavLink>}
+          {!isAuth&& <NavLink
+            to="/register"
+       
+            className={({ isActive }) => {
+              return isActive ? styles.active : styles.default;
+            }}
+          >
+           REGISTER
+          </NavLink>}
+          {isAuth&&<button onClick={handleClick} className="btn">
+              LOGOUT
+            </button>}
     </div>
   );
 };

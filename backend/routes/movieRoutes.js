@@ -1,13 +1,14 @@
 const express=require("express")
 const movieRouter=express.Router()
-const { addMovie, getMovie, getOneMovie } = require("../controller/movie.controller")
+const { addMovie, availableSeatDetails, getAllMovie, getOneMovie } = require("../controller/movie.controller")
 const { authenticate } = require("../middleware/authentication")
 
 
 movieRouter.post("/add/:theaterId",authenticate,addMovie)
 
-movieRouter.get("/allMovie",getMovie)
+movieRouter.get("/availableSeatDetails/:movieId",availableSeatDetails)
 
-movieRouter.get("/OneMovie/:movieId",getOneMovie)
+movieRouter.get("/AllMovie/:movieId",getAllMovie)
+movieRouter.get("/OneMovie/:movieId/:showId",getOneMovie)
 
 module.exports={movieRouter}

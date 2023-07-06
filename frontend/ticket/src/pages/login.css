@@ -9,8 +9,9 @@ form{
     margin-top: 40px;
 }
 form input{
-    height: 20px;
+    height: 30px;
     /* border-radius: 5px; */
+    margin-top: 20px;
 }
 
 .login{

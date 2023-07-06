@@ -14,10 +14,10 @@ const addCart = async (req, res) => {
     // console.log(movie)
     let data = {
       MovieName: movie.movieName,
-      Price: movie.price,
+      Price: movie.price*seat.length,
       location: theater.location,
       // "showTime":movie.showTime,
-      
+      movieId,
 
       seat:[]
 
@@ -55,7 +55,7 @@ const addCart = async (req, res) => {
 const getCart=async(req,res)=>{
   const {userId}=req.body
     try {
-        const find=await CartModel.find({userId});
+        const find=await CartModel.findOne({userId});
         res.send(find)
     } catch (error) {
         console.log(error)

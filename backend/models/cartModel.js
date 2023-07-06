@@ -9,6 +9,7 @@ const cartSchema=mongoose.Schema(
             Price: { type: Number, required: true },
             location: { type: String },
             showTime: { type: String, required: true },
+            movieId:{type:String},
             seat: [
               {
                 seatNo: { type: Number, required: true },

@@ -13,6 +13,7 @@ const { authenticate } = require("./middleware/authentication")
 app.use(express.json())
 app.use(cors())
 
+
 app.get("/",(req,res)=>{
     res.send("WELCOME TO THE TICKET RESERVATION SYSTEM")
 })

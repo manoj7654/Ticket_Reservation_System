@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./login.css"
+import { AuthContext } from '../Context/AuthContextProvider'
 
 
 const Login = () => {
   const [login,setLogin]=useState({email:"",password:""})
+  const {isAuth,login:Login}=useContext(AuthContext)
 
   const handleInput=(e)=>{
     setLogin({...login,[e.target.name]:e.target.value})
@@ -13,7 +15,7 @@ const handleSubmit=async(e)=>{
 e.preventDefault()
 console.log(login)
  try {
-  const result=await fetch("https://inquisitive-sundress-foal.cyclic.app/users/login",{
+  const result=await fetch("https://sparkling-erin-gilet.cyclic.app/user/login",{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -23,6 +25,7 @@ console.log(login)
   const res=await result.json();
   if(result.ok){
     localStorage.setItem("token",res.token)
+   Login()
     
     alert(res.message)
   }
@@ -30,10 +33,7 @@ console.log(login)
   console.log(error)
  }
 
-
 }
-
-
   return (
     <div>
           <h1>Login</h1>

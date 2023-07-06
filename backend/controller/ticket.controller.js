@@ -1,44 +1,51 @@
+const { CartModel } = require("../models/cartModel");
 const { MovieModel } = require("../models/movieModel");
 const { TheaterModel } = require("../models/theaterModel");
 const { TicketModel } = require("../models/ticketModel");
 
 const book = async (req, res) => {
-  const { userId,seatId, theaterId,  seat } = req.body;
-  const movieId = req.params.movieId;
+  const { userId,dataId } = req.body;
+  const theaterId = req.params.movieId;
   try {
-    const theater = await TheaterModel.findOne({ _id: theaterId });
-    const movie = await MovieModel.findOne({ _id: movieId });
-    let data = {
-      MovieName: movie.movieName,
-      Price: movie.price,
-      location: theater.location,
-      seat:[]
-
-    };
-    const availableSeat=movie.availableSeat.find((ele)=>ele._id==seatId);
-    // console.log(availableSeat)
-    data.showTime=availableSeat.showTime
-    for(let i=0;i<seat.length;i++){
-        data.seat[i]=availableSeat.seat.find((ele)=>{
-            if(ele.seatNo==seat[i]){
-                return true
-            }
-        })
-        data.seat[i].isBooked=true
+    const find=await CartModel.findOne({userId})
+    if(!find){
+      return res.json({msg:"Invalid"})
     }
-    const userData=await TicketModel.exists({userId})
-    console.log(data)
-    if(!userData){
-        const bookTicket = await new TicketModel({userId,bookingDetails:data});
-        await bookTicket.save()
+    // console.log(find)
+    let data={userId}
+   let result= find.cartDetails.find((ele)=>ele._id==dataId)
+    find.cartDetails=find.cartDetails.filter((ele)=>ele._id!=dataId)
+    let Arr=[]
+    // console.log(result)
+  result.seat=result.seat.map((ele)=>{
+    Arr.push(ele.seatNo)
+    return {...ele,isBooked:true}
+  })
+  // console.log(Arr)
+  // console.log(result.seat);
+    const isTicketExist=await TicketModel.exists({userId})
+    if(isTicketExist){
+      await TicketModel.findOneAndUpdate({userId},{$push:{bookingDetails:result}})
     }else{
-        await TicketModel.findOneAndUpdate({userId},{$push:{"bookingDetails":data}})
+      data.cartDetails=[result]
+      const res=await new TicketModel(data)
+      await res.save()
     }
-
-   
-    // availableSeat.seat.
-    await movie.save()
-    res.send(await TicketModel.find({userId}))
+    const theater=await MovieModel.findOne({_id:theaterId})
+    let mvData=theater.availableSeat[0].seat;
+    for(let i=0;i<Arr.length;i++){
+       mvData=mvData.map((ele)=>{
+        if(ele.seatNo==Arr[i]){
+          return {...ele,isBooked:true}
+        }else{
+          return ele
+        }
+       })
+    }
+    theater.availableSeat[0].seat=mvData;
+    find.save()
+    theater.save()
+    res.json({msg:"true"})
   } catch (error) {
     console.log(error);
   }

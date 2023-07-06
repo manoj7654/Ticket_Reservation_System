@@ -6,11 +6,12 @@ const { MovieModel } = require("../models/movieModel");
 require("dotenv").config();
 
 const addMovie = async (req, res) => {
-  const { movieName, price, showTime, rating } = req.body;
+  const {url, movieName, price, showTime, rating } = req.body;
   const theaterId = req.params.theaterId;
   try {
     const theater = await TheaterModel.findOne({ _id: theaterId });
     let obj = {
+      url,
       movieName,
       price,
       rating,
@@ -35,23 +36,36 @@ const addMovie = async (req, res) => {
   }
 };
 
-const getMovie=async(req,res)=>{
+const availableSeatDetails=async(req,res)=>{
+  const theaterId=req.params.movieId
     try {
-        const result=await MovieModel.find();
-        res.json(result)
+        const result=await MovieModel.findOne({_id:theaterId});
+        res.json(result.availableSeat)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getAllMovie=async(req,res)=>{
+    const theaterId=req.params.movieId
+    try {
+        const movie=await TheaterModel.findOne({_id:theaterId}).populate("movie").exec()
+        res.send(movie.movie)
     } catch (error) {
         console.log(error)
     }
 }
 
 const getOneMovie=async(req,res)=>{
-    const movieId=req.params.movieId
-    try {
-        const movie=await MovieModel.findOne({_id:movieId})
-        res.send(movie)
-    } catch (error) {
-        console.log(error)
-    }
+  const theaterId=req.params.movieId
+  const movieId=req.params.showId
+  try {
+      const movie=await MovieModel.findOne({_id:theaterId})
+      const movieData=movie?.availableSeat.find(el=>el._id==movieId)
+      res.send(movieData)
+  } catch (error) {
+      console.log(error)
+  }
 }
 
 // const searchMovie=async(req,res)=>{
@@ -64,7 +78,8 @@ const getOneMovie=async(req,res)=>{
 
 module.exports = {
   addMovie,
-  getMovie,
+  availableSeatDetails,
+  getAllMovie,
   getOneMovie
 };
 
