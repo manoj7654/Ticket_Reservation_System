@@ -9,7 +9,10 @@ const Seat = () => {
   const [seatParams,setSeatParams]=useSearchParams()
   const [theaterId,setTheaterId]=useState(null)
   const [seat,setSeat]=useState([])
+  const [loading,setLoading]=useState(false)
+  const [err,setErr]=useState(false)
   async function getData(movieId, showId) {
+    setLoading(true)
     try {
       const seat = await fetch(
         `https://sparkling-erin-gilet.cyclic.app/movie/OneMovie/${movieId}/${showId}`,
@@ -25,8 +28,11 @@ const Seat = () => {
       console.log(result)
       setSeatId(result._id)
       setDetail(result.seat);
+      setLoading(false)
     } catch (error) {
       console.log(error);
+      setErr(true)
+      setLoading(false)
     }
   }
   // console.log(detail);
@@ -52,18 +58,12 @@ const Seat = () => {
   }
 
 
-
-  // Endpoint:cart/add/:movieId
-  // Body:{userId,seatId,theaterId,seat}
-  // Params;movieId=req.params.movieId
-  
-
   useEffect(() => {
     getData(movieId, showId);
     setTheaterId(seatParams.get("t"))
   }, [movieId, showId]);
 
-  return (
+  return  loading? <h1>Loading...</h1>:err? <h1>Getting error while fetching data</h1>: (
     <div >
       <button className="add" onClick={()=>{addCart(movieId,seatId,theaterId,seat)}} >Add To Cart</button>
       {/* <button>Buy Now</button> */}

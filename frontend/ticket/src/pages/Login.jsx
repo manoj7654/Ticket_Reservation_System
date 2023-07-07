@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import "./login.css"
 import { AuthContext } from '../Context/AuthContextProvider'
-
+import {  useNavigate} from "react-router-dom"
 
 const Login = () => {
   const [login,setLogin]=useState({email:"",password:""})
   const {isAuth,login:Login}=useContext(AuthContext)
-
+let home=useNavigate()
   const handleInput=(e)=>{
     setLogin({...login,[e.target.name]:e.target.value})
   }
@@ -25,9 +25,13 @@ console.log(login)
   const res=await result.json();
   if(result.ok){
     localStorage.setItem("token",res.token)
+    localStorage.setItem("name",res.name)
    Login()
     
-    alert(res.message)
+    alert(res.message);
+   
+    home("/")
+
   }
  } catch (error) {
   console.log(error)

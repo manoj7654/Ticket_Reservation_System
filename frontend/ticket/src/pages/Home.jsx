@@ -4,21 +4,26 @@ import "./home.css"
 const Home = () => {
 
   const [theater,setTheater]=useState([])
-
+  const [loading,setLoading]=useState(false)
+  const [err,setErr]=useState(false)
   async function fetchTheater(){
+    setLoading(true)
     try {
       const theater=await fetch("https://sparkling-erin-gilet.cyclic.app/theaters/allTheater")
       const result=await theater.json()
       console.log(result)
       setTheater(result)
+      setLoading(false)
     } catch (error) {
       console.log(error)
+      setErr(true)
+      setLoading(false)
     }
   }
   useEffect(()=>{
     fetchTheater()
   },[])
-  return (
+  return loading? <h1>Loading...</h1>:err? <h1>Getting error while fetching data</h1>: (
     <div className='home'>
       {theater.map((ele)=>{
         return(
@@ -26,6 +31,7 @@ const Home = () => {
           style={{textDecoration:"none"}}
           >
              <div className='theaterCard'>
+              <img src={ele.url} alt={ele.url} />
             <h2>Theater Name:{ele.theaterName}</h2>
             <h2>Location:{ele.location}</h2>
             <h2>TotalSeats:{ele.totalSeats}</h2>

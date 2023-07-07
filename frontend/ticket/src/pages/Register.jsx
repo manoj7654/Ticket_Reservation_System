@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import "./register.css"
+import { useNavigate } from 'react-router-dom'
 const Register = (e) => {
 const [register,setRegister]=useState({name:"",mobile:"",email:"",password:""})
+const navigate=useNavigate()
 const handleChange=(e)=>{
   setRegister({...register,[e.target.name]:e.target.value})
 }
@@ -20,6 +22,7 @@ const handleChange=(e)=>{
        if(result.ok){
         alert(res.message)
         // <redirect to="/login" />
+        navigate("/register")
        }else{
         alert(res.message)
        }

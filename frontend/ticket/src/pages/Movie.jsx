@@ -6,8 +6,11 @@ const Movie = () => {
   const [data, setData] = useState([]);
   const { theaterId,movieId } = useParams();
   const [movie, setMovie] = useState();
+  const [loading,setLoading]=useState(false)
+  const [err,setErr]=useState(false)
   // console.log(theaterId)
   async function getData(theaterId) {
+    setLoading(true)
     try {
       const result = await fetch(
         `https://sparkling-erin-gilet.cyclic.app/movie/AllMovie/${theaterId}`,
@@ -22,8 +25,12 @@ const Movie = () => {
       const res = await result.json();
       console.log(res);
       setData(res);
+      setLoading(false)
     } catch (error) {
       console.log(error);
+      setErr(true)
+      setLoading(false)
+    
     }
   }
   // getData()
@@ -34,7 +41,7 @@ const Movie = () => {
 console.log(data)
  
 
-  return (
+  return loading? <h1>Loading...</h1>:err? <h1>Getting error while fetching data</h1>: (
     <div
       style={{
         display: "grid",

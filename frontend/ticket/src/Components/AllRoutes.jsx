@@ -7,6 +7,8 @@ import Movie from '../pages/Movie'
 import Seat from '../pages/Seat'
 import ShowDetails from './ShowDetails'
 import Cart from '../pages/Cart'
+import Checkout from '../pages/Checkout'
+import TicketList from '../pages/TicketList'
 
 export const AllRoutes = () => {
   return (
@@ -19,6 +21,9 @@ export const AllRoutes = () => {
             <Route path='/seats/:movieId/:showId' element={<Seat/>}/>
             <Route path='/show/:movieId' element={<ShowDetails/>}/>
             <Route path='/cart' element={<Cart/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/ticket' element={<TicketList/>}/>
+
         </Routes>
     </div>
   )

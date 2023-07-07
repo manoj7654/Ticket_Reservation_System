@@ -4,11 +4,10 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContextProvider";
 const links = [
   { path: "/", title: "HOME" }
- 
-  
 
 ];
 
+let name=localStorage.getItem("name")
 
 const Navbar = () => {
   const {isAuth,logout}=useContext(AuthContext);
@@ -58,6 +57,15 @@ const handleClick=()=>{
           >
            CART
           </NavLink>}
+          {isAuth&& <NavLink
+            to="/ticket"
+       
+            className={({ isActive }) => {
+              return isActive ? styles.active : styles.default;
+            }}
+          >
+           TICKET LIST
+          </NavLink>}
           {!isAuth&& <NavLink
             to="/login"
        
@@ -76,6 +84,8 @@ const handleClick=()=>{
           >
            REGISTER
           </NavLink>}
+          {isAuth&&<p>{name}</p>}
+          
           {isAuth&&<button onClick={handleClick} className="btn">
               LOGOUT
             </button>}

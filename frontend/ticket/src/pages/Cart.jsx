@@ -1,10 +1,16 @@
 
 import React, { useEffect, useState } from 'react'
 import "./cart.css"
+import { useNavigate } from 'react-router-dom';
+
 const Cart = () => {
   const [data,setData]=useState([]);
 
+  const navigate=useNavigate()
+
+
   async function getData(){
+    
     try {
       const result=await fetch("https://sparkling-erin-gilet.cyclic.app/cart/get",{
         method:"GET",
@@ -15,18 +21,20 @@ const Cart = () => {
       });
       const res=await result.json();
       console.log(res)
-      setData(res.cartDetails)
-     
+        setData(res.cartDetails)
+      
     } catch (error) {
       console.log(error)
+      
     }
   }
   // getData()
-  console.log(data)
+  
 
-  const handleDelete=async(Id)=>{
+  const handleDelete=async(movieId,cartId)=>{
+    console.log(cartId)
   try {
-    const del=await fetch(`https://sparkling-erin-gilet.cyclic.app/cart/remove/${Id}`,{
+    const del=await fetch(`https://sparkling-erin-gilet.cyclic.app/cart/remove/${cartId}`,{
       method:"DELETE",
       headers:{
         "Content-Type":"application/json",
@@ -34,17 +42,20 @@ const Cart = () => {
       }
     })
     const result=await del.json();
+
     if(del.ok){
-      alert(result.message)
+      alert(result.msg)
+      window.location.reload()
     }else{
-      alert(result.message)
+      alert(result.msg)
     }
+
   } catch (error) {
     console.log(error)
   }
   }
 const buyTicket=async(movieId,dataId)=>{
-    console.log(movieId,dataId);
+  
   const res= await fetch(`https://sparkling-erin-gilet.cyclic.app/bookings/book/${movieId}`,{
     method:"POST",
     headers:{
@@ -55,13 +66,15 @@ const buyTicket=async(movieId,dataId)=>{
   })
   await res.json();
   if(res.ok){
-    alert("Your movies ticket has been booked")
+    navigate("/checkout")
+
+
   }
 }
   useEffect(()=>{
     getData()
   },[])
-  return (
+  return  (
     <div
     style={{
       display: "grid",
@@ -72,7 +85,7 @@ const buyTicket=async(movieId,dataId)=>{
       marginTop:"50px"
     }}
   >
-   {data.map((ele)=>{
+   {data.length>0&&data.map((ele)=>{
     return (
       <div style={{
         // border: "1px solid red",
@@ -84,13 +97,17 @@ const buyTicket=async(movieId,dataId)=>{
       }}>
         <h3>Movie Name:{ele.MovieName}</h3>
         <h3>Price:{ele.Price}</h3>
+        {/* {localStorage.setItem("price",ele.price)} */}
+        {localStorage.setItem("price",ele.Price)}
         <h3>Location:{ele.location}</h3>
         <h3>Total Seat:{ele.seat.length}</h3>
+       
          <button  className='buy' onClick={()=>buyTicket(ele.movieId,ele._id)} >Buy Now</button>
-        <button onClick={handleDelete} className='del'>Delete</button>
+        <button onClick={()=>{handleDelete(ele.movieId,ele._id)}} className='del'>Delete</button>
       </div>
     )
    })}
+   {data.length<=0&&<h1>There is no item in Your Cart</h1>}
   </div>
   )
 }

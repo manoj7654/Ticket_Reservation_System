@@ -33,6 +33,7 @@ const ShowDetails = () => {
   return (
     <div>
         <h1>Show Details</h1>
+        <p>Please click on the link</p>
       {detail.map((ele)=>{
         return(
            <Link to={`/seats/${movieId}/${ele._id}?t=${searchParams.get("t")}`} key={ele._id}>
