@@ -3,7 +3,7 @@ import "./register.css"
 import { useNavigate } from 'react-router-dom'
 const Register = (e) => {
 const [register,setRegister]=useState({name:"",mobile:"",email:"",password:""})
-const navigate=useNavigate()
+const navigat=useNavigate()
 const handleChange=(e)=>{
   setRegister({...register,[e.target.name]:e.target.value})
 }
@@ -21,8 +21,7 @@ const handleChange=(e)=>{
        const res=await result.json();
        if(result.ok){
         alert(res.message)
-        // <redirect to="/login" />
-        navigate("/register")
+        navigat("/login")
        }else{
         alert(res.message)
        }
