@@ -301,7 +301,6 @@ To run the application, follow these steps:
 * Start the development server using npm start.
 * Access the application in a web browser at http://localhost:3000.
 
-<<<<<<< HEAD
 ## Dependencies
   
             "dependencies":
@@ -319,24 +318,17 @@ To run the application, follow these steps:
             "web-vitals": "^2.1.4"
          }
 
-=======
->>>>>>> 523bbbcd043c7103e238156ab30b205921106333
+
 
 ## Deployment
 Server side:  Deployed on the Cyclic
 
-<<<<<<< HEAD
+
 [Backend-End]( https://sparkling-erin-gilet.cyclic.app/)
 
       
 Client side: Deploy on the Vercel
  
-=======
- [Back-End]( https://sparkling-erin-gilet.cyclic.app/)
-      
-Client side: Vercel
-
->>>>>>> 523bbbcd043c7103e238156ab30b205921106333
  [Front-End]( https://ticket-tan.vercel.app/)
     
 
