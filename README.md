@@ -276,55 +276,34 @@ To run the application, follow these steps:
 * Start the development server using npm start.
 * Access the application in a web browser at http://localhost:3000.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Dependencies
+  
+            "dependencies":
+            {
+            "@fortawesome/fontawesome-svg-core": "^6.4.0",
+            "@fortawesome/free-solid-svg-icons": "^6.4.0",
+            "@fortawesome/react-fontawesome": "^0.2.0",
+            "@testing-library/jest-dom": "^5.16.5",
+            "@testing-library/react": "^13.4.0",
+            "@testing-library/user-event": "^13.5.0",
+            "react": "^18.2.0",
+            "react-dom": "^18.2.0",
+            "react-router-dom": "^6.14.0",
+            "react-scripts": "5.0.1",
+            "web-vitals": "^2.1.4"
+         }
 
 
 ## Deployment
-Server side: Cyclic
+Server side:  Deployed on the Cyclic
 
-       https://sparkling-erin-gilet.cyclic.app/
-Client side: Vercel
+[Backend-End]( https://sparkling-erin-gilet.cyclic.app/)
+
+      
+Client side: Deploy on the Vercel
  
-     https://ticket-tan.vercel.app/
+ [Front-End]( https://ticket-tan.vercel.app/)
+    
 
 
 
