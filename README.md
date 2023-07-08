@@ -207,7 +207,12 @@ The `Navbar` component is responsible for rendering the navigation bar at the to
 
 Location: `components/Navbar.jsx`
 
-Home 
+`Before Login`
+![Screenshot (557)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/e57bf470-aaef-48d5-b7e3-c100b788310c)
+
+`After Login`
+![Screenshot (556)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/9beee6ef-085e-4789-a201-5b0ff5b29c6b)
+
 
 
 ### AllRoutes Component
@@ -215,10 +220,14 @@ The `AllRoutes` component defines all the routes for the application using `reac
 
 Location: `components/AllRoutes.jsx`
 
+
 ### ShowDetails Component
 The `ShowDetails` component displays the available show details for a selected movie. It fetches the show details from the server based on the movie ID and renders them as clickable links to the seat selection page.
 
 Location: `components/ShowDetails.jsx`
+
+
+![Screenshot (546)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/96cba976-c7b8-4c01-a7ef-da4fcd5391b0)
 
 ## Context API 
 ### AuthContextProvider
@@ -234,40 +243,56 @@ The `Home` page displays a list of theaters available for movie selection. It fe
 
 Location: `pages/Home.jsx`
 
+![Screenshot (544)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/1d9f2472-60fd-4246-aac4-938d6f8da37b)
+
 ### Register Page
 The `Register` page allows new users to create an account. It includes a registration form where users can enter their name, mobile number, email, and password. After successful registration, the user is redirected to the login page.
 
 Location: `pages/Register.jsx`
+
+![Screenshot (542)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/8c83dc7e-0f4a-45c1-ae36-461dcd39b4d1)
 
 ### Login Page
 The `Login page` allows existing users to log in to their accounts. It includes a login form where users can enter their email and password. After successful login, the user is redirected to the home page.
 
 Location: `pages/Login.js`
 
+![Screenshot (543)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/57a87593-97f0-4596-bbfb-2c235a34eacc)
+
 ### Movie Page
 The `Movie` page displays a list of movies available at a selected theater. It fetches the movie data from the server based on the theater ID and renders it as cards with movie details. Users can click on a movie to view its show details.
 
 Location: `pages/Movie.jsx`
+![Screenshot (545)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/fc8cb4e5-7398-48cf-abc4-50eee8850e4a)
+
 
 ### Seat Page
 The `Seat` page allows users to select seats for a specific movie show. It fetches the seat data from the server based on the movie ID and show ID. Users can click on available seats to select them. Selected seats are added to the cart for checkout.
 
 Location: `pages/Seat.jsx`
 
+![Screenshot (547)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/3ff31d19-2774-47aa-b7d1-d288a3e3b188)
+
 ### Cart Page
 The `Cart` page displays the list of movies added to the user's cart. It fetches the cart data from the server and allows users to remove movies from the cart. Users can proceed to checkout or remove movies from the cart.
 
 Location: `pages/Cart.jsx`
+
+![Screenshot (548)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/a23fc7cd-4afb-4c36-b64b-79140e4c9c1f)
 
 ### Checkout Page
 The `Checkout` page displays the payment form for users to enter their card details. It allows users to make payments for the selected movie tickets. After successful payment, the user is redirected to the home page.
 
 Location: `pages/Checkout.jsx`
 
+![Screenshot (551)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/2cf595b9-39b2-49ed-93c1-66ab21596f8e)
+
 ### TicketList Page
 The `TicketList` page displays the list of tickets booked by the user. It fetches the ticket data from the server and shows details such as movie name, show time, total seats, total price, and location.
 
 Location: `pages/TicketList.jsx`
+
+![Screenshot (552)](https://github.com/manoj7654/Ticket_Reservation_System/assets/107467981/8682245f-4e50-44bc-af04-e9dc6262af2e)
 
 ## Running the Application
 To run the application, follow these steps:
@@ -276,6 +301,7 @@ To run the application, follow these steps:
 * Start the development server using npm start.
 * Access the application in a web browser at http://localhost:3000.
 
+<<<<<<< HEAD
 ## Dependencies
   
             "dependencies":
@@ -293,15 +319,24 @@ To run the application, follow these steps:
             "web-vitals": "^2.1.4"
          }
 
+=======
+>>>>>>> 523bbbcd043c7103e238156ab30b205921106333
 
 ## Deployment
 Server side:  Deployed on the Cyclic
 
+<<<<<<< HEAD
 [Backend-End]( https://sparkling-erin-gilet.cyclic.app/)
 
       
 Client side: Deploy on the Vercel
  
+=======
+ [Back-End]( https://sparkling-erin-gilet.cyclic.app/)
+      
+Client side: Vercel
+
+>>>>>>> 523bbbcd043c7103e238156ab30b205921106333
  [Front-End]( https://ticket-tan.vercel.app/)
     
 
