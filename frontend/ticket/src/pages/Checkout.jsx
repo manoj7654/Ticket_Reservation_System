@@ -30,7 +30,7 @@ const Checkout = () => {
                 <input type="text" name="" id="" placeholder='01/23' onChange={(e)=>{setExpiry(e.target.value)}} required  />
                <label>Payable Prize </label>
                <input type="text" name="" id="payable" disabled value={localStorage.getItem("price")} />
-               <input type="submit"  name="" id="sub"  />
+               <input type="submit"  name="" id="sub"  value="Pay" />
          </form>
         </div>
     </div>

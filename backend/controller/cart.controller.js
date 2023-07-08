@@ -56,16 +56,20 @@ const getCart=async(req,res)=>{
   const {userId}=req.body
     try {
         const find=await CartModel.findOne({userId});
-        res.send(find)
+        res.json(find)
     } catch (error) {
         console.log(error)
     }
 }
 
 const deleteItem=async(req,res)=>{
-  const Id=req.params._id
+  const Id=req.params.cartId
+  const {userId}= req.body;
+  console.log(userId)
   try {
-    await CartModel.findByIdAndDelete({_id:Id})
+    await CartModel.findOneAndDelete({userId},{
+      $pull:{"cartDetails.$._id":Id}
+    });
     res.send({"msg":"Item has been deleted"})
   } catch (error) {
     console.log(error)

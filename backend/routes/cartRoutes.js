@@ -9,7 +9,7 @@ cartRouter.post("/add/:movieId",addCart)
 cartRouter.get("/get",getCart)
 
 // .........................for removing movie from cart ....................
-cartRouter.delete("/remove/:_id",deleteItem)
+cartRouter.delete("/remove/:cartId",deleteItem)
 
 
 module.exports={

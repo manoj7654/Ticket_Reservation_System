@@ -5,6 +5,7 @@ const tickeRouter=express.Router()
 
 tickeRouter.post("/book/:movieId",book)
 tickeRouter.get("/get",searchTicket)
+tickeRouter.get("/getbooking",getData)
 
 // tickeRouter.get("/allTheater",getTheater)
 // tickeRouter.get("/oneTheater/:theaterId",getOneTheater)

@@ -86,7 +86,7 @@ const handleClick=()=>{
           </NavLink>}
           {isAuth&&<p>{name}</p>}
           
-          {isAuth&&<button onClick={handleClick} className="btn">
+          {isAuth&&<button  onClick={handleClick} style={{border:"none",height:"40px",borderRadius:"10px",cursor:"pointer"}}>
               LOGOUT
             </button>}
     </div>

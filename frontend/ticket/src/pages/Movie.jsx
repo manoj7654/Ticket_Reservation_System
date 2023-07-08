@@ -62,7 +62,8 @@ console.log(data)
               boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
               // border: "1px solid red",
               borderRadius: "10px ",
-              paddingBottom:"30px"
+              paddingBottom:"30px",
+             
             
             }}
           >

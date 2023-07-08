@@ -69,7 +69,19 @@ if(q){
   }
 }
 
+const getData=async(req,res)=>{
+  const {userID}=req.body
+  try {
+    const result=await TicketModel.find({userId:userId})
+    let final=result[0].bookingDetails
+    res.send(final)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   book,
-  searchTicket
+  searchTicket,
+  getData
 };
