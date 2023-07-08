@@ -52,6 +52,7 @@ console.log(data)
         marginTop:"50px"
       }}
     >
+      
       {data.map((ele) => {
         return (
           <div
