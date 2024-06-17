@@ -34,7 +34,7 @@ const Cart = () => {
   const handleDelete=async(movieId,cartId)=>{
     console.log(cartId)
   try {
-    const del=await fetch(`https://sparkling-erin-gilet.cyclic.app/cart/remove/${cartId}`,{
+    const del=await fetch(`https://ticket-reservation-backend.onrender.com/cart/remove/${cartId}`,{
       method:"DELETE",
       headers:{
         "Content-Type":"application/json",
@@ -56,7 +56,7 @@ const Cart = () => {
   }
 const buyTicket=async(movieId,dataId)=>{
   
-  const res= await fetch(`https://sparkling-erin-gilet.cyclic.app/bookings/book/${movieId}`,{
+  const res= await fetch(`https://ticket-reservation-backend.onrender.com/bookings/book/${movieId}`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
