@@ -39,7 +39,7 @@ const Seat = () => {
 
   async function addCart(movieId,seatId,theaterId,seat){
     try {
-      const cart=await fetch(`https://sparkling-erin-gilet.cyclic.app/cart/add/${movieId}`,{
+      const cart=await fetch(`https://ticket-reservation-backend.onrender.com/cart/add/${movieId}`,{
         method:"POST",
         headers:{
           "Content-Type":"application/json",
