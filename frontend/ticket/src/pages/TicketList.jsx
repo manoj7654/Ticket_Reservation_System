@@ -9,7 +9,7 @@ const [err,setErr]=useState(false)
 async function getList(){
     setLoading(true)
     try {
-        const list=await fetch("https://sparkling-erin-gilet.cyclic.app/bookings/getbooking",{
+        const list=await fetch("https://ticket-reservation-backend.onrender.com/bookings/getbooking",{
             method:"GET",
             headers:{
                 "Content-Type":"application/json",
