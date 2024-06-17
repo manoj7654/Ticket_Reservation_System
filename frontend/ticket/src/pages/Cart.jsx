@@ -12,7 +12,7 @@ const Cart = () => {
   async function getData(){
     
     try {
-      const result=await fetch("https://sparkling-erin-gilet.cyclic.app/cart/get",{
+      const result=await fetch("https://ticket-reservation-backend.onrender.com/cart/get",{
         method:"GET",
         headers:{
           "Content-Type":"application/json",
