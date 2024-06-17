@@ -9,7 +9,7 @@ const ShowDetails = () => {
     console.log(searchParams.get("t"))
     async function getData(movieId){
         try {
-            const seat=await fetch(`https://sparkling-erin-gilet.cyclic.app/movie/availableSeatDetails/${movieId}`,{
+            const seat=await fetch(`https://ticket-reservation-backend.onrender.com/movie/availableSeatDetails/${movieId}`,{
                 method:"GET",
                 headers:{
                     "Content-Type":"application/json",
