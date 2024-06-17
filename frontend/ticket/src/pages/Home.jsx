@@ -9,7 +9,7 @@ const Home = () => {
   async function fetchTheater(){
     setLoading(true)
     try {
-      const theater=await fetch("https://sparkling-erin-gilet.cyclic.app/theaters/allTheater")
+      const theater=await fetch("https://ticket-reservation-backend.onrender.com/theaters/allTheater")
       const result=await theater.json()
       console.log(result)
       setTheater(result)
