@@ -15,7 +15,7 @@ const Seat = () => {
     setLoading(true)
     try {
       const seat = await fetch(
-        `https://sparkling-erin-gilet.cyclic.app/movie/OneMovie/${movieId}/${showId}`,
+        `https://ticket-reservation-backend.onrender.com/movie/OneMovie/${movieId}/${showId}`,
         {
           method: "GET",
           headers: {
