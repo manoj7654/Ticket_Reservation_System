@@ -10,7 +10,7 @@ const handleChange=(e)=>{
   const handleSubmit=async(e)=>{
    e.preventDefault()
     try {
-       const result=await fetch("https://sparkling-erin-gilet.cyclic.app/user/register",{
+       const result=await fetch("https://ticket-reservation-backend.onrender.com/user/register",{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
