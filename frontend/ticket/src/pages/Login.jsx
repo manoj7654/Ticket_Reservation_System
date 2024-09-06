@@ -44,7 +44,7 @@ console.log(login)
         <div className="login">
         <form action=""   onSubmit={handleSubmit} >
             <input type="text" name="email" id="" placeholder='Enter email' onChange={handleInput} />
-            <input type="text" name="password" id="" placeholder='Enter password' onChange={handleInput}  />
+            <input type="password" name="password" id="" placeholder='Enter password' onChange={handleInput}  />
             <input type="submit" name="" id="account" value="Login" />
         </form>
         </div>
