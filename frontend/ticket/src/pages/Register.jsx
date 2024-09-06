@@ -38,7 +38,7 @@ const handleChange=(e)=>{
             <input type="text" name="name" id="" placeholder='Enter name' onChange={handleChange} />
             <input type="text" name="mobile" id="" placeholder='Enter Mobile No' onChange={handleChange} />
             <input type="text" name="email" id="" placeholder='Enter email' onChange={handleChange} />
-            <input type="text" name="password" id="" placeholder='Enter password' onChange={handleChange}  />
+            <input type="password" name="password" id="" placeholder='Enter password' onChange={handleChange}  />
             <input type="submit" name="" id="account" value="Create" />
         </form>
         </div>
